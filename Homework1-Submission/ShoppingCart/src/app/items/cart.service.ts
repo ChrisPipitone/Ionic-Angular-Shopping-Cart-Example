@@ -7,18 +7,17 @@ import { ItemsService } from './items.service';
 })
 export class CartService {
 
-  private cartItems: Item[] = [
+  private cartItems: Item[] = [];
+  constructor(private itemsService: ItemsService) { 
+    this.cartItems = [
       {
         id: '1',
         title: 'Water bottles',
         imageURL: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS10S3ALy4ucHJcx_vqjFm_jVgvx7-kBnmci3CwXhEN6QsKl57U',
         description:['24 pack of water bottles']
       }
-  ];
-  constructor(private itemsService: ItemsService) { 
-  //  this.cartItems = [] 
+    ] 
   }
-
 
   getAllItems(){
     return [...this.cartItems];
@@ -29,7 +28,9 @@ export class CartService {
   }
 
   deleteItem(itemId: string) {
+    console.log(itemId)
     this.cartItems = this.cartItems.filter(item => item.id !== itemId);
+    console.log("itemId")
   }
 
   filterItems(filterTerm) {
@@ -39,6 +40,6 @@ export class CartService {
   }
 
   AddItem(itemId: string) {
-    this.cartItems.push(...this.cartItems,this.itemsService.getItem(itemId) )
+    this.cartItems.push(this.itemsService.getItem(itemId) )
   }
 }
