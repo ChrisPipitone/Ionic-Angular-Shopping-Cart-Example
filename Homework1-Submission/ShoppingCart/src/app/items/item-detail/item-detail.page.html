@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/items"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{loadedItem.title}}</ion-title>
+    <ion-buttons slot = "primary">
+      <ion-button (click)="onAddItem()">
+        Add To Cart
+        <ion-icon name= "add" ion-button color="secondary" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col no-padding><ion-img [src] = "loadedItem.imageURL"></ion-img></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div class="ion-text-center">
+          <h1>{{loadedItem.title}}</h1>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-list><ion-item *ngFor="let content of loadedItem.description">{{content}}</ion-item></ion-list>
+    </ion-row>
+  </ion-grid>
+</ion-content>

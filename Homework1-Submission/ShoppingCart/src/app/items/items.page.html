@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Selection Screen</ion-title> 
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['./cart']" >View Cart</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-searchbar placeholder="Search..." 
+    [(ngModel)]="filterTerm" animated="true"
+    (ionChange)="setFilteredItems()"
+    ></ion-searchbar>
+    <ion-item *ngFor="let element of items " [routerLink] ="['./',element.id]">
+      <ion-avatar slot="start">
+        <ion-img [src]="element.imageURL"></ion-img>
+      </ion-avatar>
+      <ion-label>
+        {{element.title}}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
